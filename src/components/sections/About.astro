@@ -1,0 +1,18 @@
+---
+import Container from "../layout/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import { profile } from "../../data/profile";
+---
+
+<section id="about" aria-labelledby="about-heading" class="py-20 sm:py-28">
+  <Container>
+    <div class="grid gap-10 lg:grid-cols-12">
+      <div class="reveal lg:col-span-4">
+        <SectionHeading id="about-heading" eyebrow="Tentang saya" title="Belajar, mencoba, dan terus berkembang." />
+      </div>
+      <div class="reveal space-y-5 text-base sm:text-lg lg:col-span-7 lg:col-start-6">
+        {profile.about.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </Container>
+</section>

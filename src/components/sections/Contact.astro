@@ -1,0 +1,43 @@
+---
+import Container from "../layout/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import { profile } from "../../data/profile";
+import { socialLinks } from "../../data/social-links";
+---
+
+<section id="contact" aria-labelledby="contact-heading" class="bg-sage-pale py-20 sm:py-28">
+  <Container>
+    <div class="reveal">
+      <SectionHeading id="contact-heading" eyebrow="Kontak" title="Mari terhubung." />
+      <p class="mt-5 max-w-xl text-lg">
+        Untuk pertanyaan, kolaborasi, atau sekadar berkenalan, silakan kirim email kepada saya.
+      </p>
+      <a
+        href={`mailto:${profile.email}`}
+        class="mt-8 inline-block break-all text-2xl font-medium underline decoration-sage decoration-1 underline-offset-8 transition-colors duration-200 hover:text-sage-dark sm:text-4xl"
+      >
+        {profile.email}
+      </a>
+      <p class="mt-6">{profile.location}</p>
+
+      {
+        socialLinks.length > 0 && (
+          <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+            {socialLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="inline-block py-1 font-medium underline underline-offset-4 hover:text-sage-dark"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </Container>
+</section>

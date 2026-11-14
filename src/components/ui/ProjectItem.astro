@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import type { Project } from "../../types/portfolio";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="group">
+  <div class="aspect-[16/10] overflow-hidden border border-line bg-sage-pale">
+    <Image
+      src={project.image}
+      alt={project.imageAlt}
+      loading="lazy"
+      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+    />
+  </div>
+  <h3 class="mt-5 text-2xl font-semibold tracking-tight">{project.title}</h3>
+  <p class="mt-2 text-muted">{project.description}</p>
+  <ul class="mt-4 flex flex-wrap gap-2" aria-label={`Tech stack ${project.title}`}>
+    {project.technologies.map((technology) => (
+      <li class="border border-line px-2.5 py-1 text-xs text-muted">{technology}</li>
+    ))}
+  </ul>
+  {
+    (project.githubUrl || project.demoUrl) && (
+      <p class="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
+        {project.demoUrl && (
+          <a class="underline underline-offset-4 hover:text-sage-dark" href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+            Lihat demo
+          </a>
+        )}
+        {project.githubUrl && (
+          <a class="underline underline-offset-4 hover:text-sage-dark" href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+            Repository GitHub
+          </a>
+        )}
+      </p>
+    )
+  }
+</article>

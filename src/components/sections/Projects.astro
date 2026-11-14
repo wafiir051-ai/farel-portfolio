@@ -1,0 +1,33 @@
+---
+import Container from "../layout/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import ProjectItem from "../ui/ProjectItem.astro";
+import { projects } from "../../data/projects";
+---
+
+<section id="projects" aria-labelledby="projects-heading" class="py-20 sm:py-28">
+  <Container>
+    <div class="reveal">
+      <SectionHeading id="projects-heading" eyebrow="Proyek" title="Proyek pilihan" />
+    </div>
+
+    {
+      projects.length > 0 ? (
+        <div class="mt-12 grid gap-x-10 gap-y-14 md:grid-cols-2">
+          {projects.map((project) => (
+            <div class="reveal">
+              <ProjectItem project={project} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="reveal mt-12 border-t border-line pt-8">
+          <p class="max-w-xl text-lg">Belum ada proyek yang ditampilkan.</p>
+          <p class="mt-2 max-w-xl text-muted">
+            Proyek akan ditambahkan di sini setelah selesai dan siap dipublikasikan.
+          </p>
+        </div>
+      )
+    }
+  </Container>
+</section>
